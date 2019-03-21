@@ -41,23 +41,31 @@ use Config qw(
 }
 
 {
-    setup_endpoint();
-    ok( 1 == 1 )
+    my $line = 'E /v1/';
+    my $mock_state = { 'endpoint' => -1 };
+    setup_endpoint( $line, $mock_state );
+    ok( $mock_state->{'endpoint'} eq '/v1/' )
 }
 
 {
-    setup_framework();
-    ok( 1 == 1 )
+    my $line = 'F alphabeta';
+    my $mock_state = { 'framework' => -1 };
+    setup_framework( $line, $mock_state );
+    ok( $mock_state->{'framework'} eq 'alphabeta' );
 }
 
 {
-    setup_id_type();
-    ok( 1 == 1 )
+    my $line = 'F string';
+    my $mock_state = { 'type' => -1 };
+    setup_id_type( $line, $mock_state );
+    ok( $mock_state->{'type'} eq 'string' );
 }
 
 {
-    setup_class();
-    ok( 1 == 1 )
+    my $line = 'C Animal';
+    my $mock_state = { 'class_name' => -1 };
+    setup_class( $line, $mock_state );
+    ok( $mock_state->{'class_name'} eq 'Animal' )
 }
 
 {

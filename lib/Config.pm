@@ -48,11 +48,44 @@ sub setup_logger {
     }
     return $state_ref;
 }
-sub setup_endpoint  { return; }
-sub setup_framework { return; }
-sub setup_id_type   { return; }
-sub setup_class     { return; }
-sub setup_com       { return; }
+
+sub setup_endpoint {
+    my ( $line, $state_ref ) = @_;
+    my $str = substr $line, 1;
+    $str =~ s/^\s+|\s+$//xmsg;    #trim both ends
+    $state_ref->{'endpoint'} = $str;
+    return $state_ref;
+}
+
+sub setup_framework {
+    my ( $line, $state_ref ) = @_;
+    my $str = substr $line, 1;
+    $str =~ s/^\s+|\s+$//xmsg;    #trim both ends
+    $state_ref->{'framework'} = $str;
+    return $state_ref;
+}
+
+sub setup_id_type {
+    my ( $line, $state_ref ) = @_;
+    my $str = substr $line, 1;
+    $str =~ s/^\s+|\s+$//xmsg;    #trim both ends
+    $state_ref->{'type'} = $str;
+    return $state_ref;
+}
+
+sub setup_class {
+    my ( $line, $state_ref ) = @_;
+    my $str = substr $line, 1;
+    $str =~ s/^\s+|\s+$//xmsg;    #trim both ends
+    $state_ref->{'class_name'} = $str;
+    return $state_ref;
+}
+
+sub setup_com {
+
+    # just a comment :)
+    return;
+}
 
 my %actions = (
     q{L} => \&setup_logger,
