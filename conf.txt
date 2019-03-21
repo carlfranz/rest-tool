@@ -1,0 +1,15 @@
+## skip this comments
+# framework
+F angular
+
+# type of id
+T string
+
+# class name 
+C RestCaProxy
+
+# endpoint
+E /rest/v1/proxies
+
+# logger
+L yes

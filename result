@@ -1,0 +1,25 @@
+list(): Observable<RestCaProxy[]> {
+  log.debug('Retrieving a list of RestCaProxy from server');
+  return this.http.get<RestCaProxy[]>('/rest/v1/proxies');
+}}
+
+get(id: string): Observable<RestCaProxy> {
+  log.debug(`Retrieving the RestCaProxy with id ${id}`);
+  return this.http.get<RestCaProxy>(`/rest/v1/proxies/${id}`);
+}}
+
+create(restCaProxy: RestCaProxy): Observable<RestCaProxy> {
+  log.debug('Creating a new RestCaProxy');
+  return this.http.post<RestCaProxy>('/rest/v1/proxies',restCaProxy);
+}}
+
+update(id: string, restCaProxy: RestCaProxy): Observable<RestCaProxy> {
+  log.debug(`Updating the RestCaProxy with id ${id}`);
+  return this.http.put<RestCaProxy>(`/rest/v1/proxies/${id}`,restCaProxy);
+}}
+
+remove(id: string): Observable<{}> {
+  log.debug(`Deleting the RestCaProxy with id ${id}`);
+  return this.http.delete<{}>(`/rest/v1/proxies/${id}`);
+}}
+
