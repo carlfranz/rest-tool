@@ -22,7 +22,8 @@ my $result = gen_update(%test_conf);
 my $expected =
     qq|update(id: string, restCaProxy: RestCaProxy): Observable<RestCaProxy> {\n|
   . qq|  log.debug(`Updating the RestCaProxy with id \${id}`);\n|
-  . qq|  return this.http.put<RestCaProxy>(`/rest/v1/proxies/\${id}`,restCaProxy);\n|
+  . qq|  return this.http.put<RestCaProxy>(`/rest/v1/proxies/\${id}`,restCaProxy)\n|
+  . qq|    .pipe(catchError(err => this.handleError(err)));\n|
   . qq|}\n\n|;
 
 ok( $result eq $expected );

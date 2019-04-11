@@ -17,12 +17,12 @@ sub gen_get {
     my $endpoint   = $state_ref{'endpoint'};
     my $id_type    = $state_ref{'type'};
 
-    my $ret = "get(id: ${id_type}): Observable<$class_name> {\n";
+    my $ret = qq|get(id: ${id_type}): Observable<$class_name> {\n|;
     if ( $state_ref{'logger'} ) {
-        $ret = $ret . "  log.debug(`Retrieving the ${class_name} with id \$\{id\}`);\n";
+        $ret = qq|$ret  log.debug(`Retrieving the ${class_name} with id \$\{id\}`);\n|;
     }
-    $ret = $ret . "  return this.http.get<${class_name}>(`${endpoint}\/\$\{id\}`);\n";
-    $ret = $ret . "}\n\n";
+    $ret = qq|$ret  return this.http.get<${class_name}>(`${endpoint}\/\$\{id\}`)\n|;
+    $ret = qq|$ret    .pipe(catchError(err => this.handleError(err)));\n}\n\n|;
     return $ret;
 }
 

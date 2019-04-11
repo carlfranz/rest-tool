@@ -20,7 +20,8 @@ my $result = gen_get(%test_conf);
 my $expected =
     qq|get(id: string): Observable<RestCaProxy> {\n|
   . qq|  log.debug(`Retrieving the RestCaProxy with id \${id}`);\n|
-  . qq|  return this.http.get<RestCaProxy>(`/rest/v1/proxies/\${id}`);\n|
+  . qq|  return this.http.get<RestCaProxy>(`/rest/v1/proxies/\${id}`)\n|
+  . qq|    .pipe(catchError(err => this.handleError(err)));\n|
   . qq|}\n\n|;
 
 ok( $result eq $expected );

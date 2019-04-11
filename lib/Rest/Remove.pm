@@ -22,8 +22,8 @@ sub gen_remove {
     if ( $state_ref{'logger'} ) {
         $ret = qq|$ret  log.debug(`Deleting the $class_name with id \${id}`);\n|;
     }
-    $ret = qq|$ret  return this.http.delete<{}>(`$endpoint/\${id}`);\n|;
-    $ret = qq|$ret}\n\n|;
+    $ret = qq|$ret  return this.http.delete<{}>(`$endpoint/\${id}`)\n|;
+    $ret = qq|$ret    .pipe(catchError(err => this.handleError(err)));\n}\n\n|;
     return $ret;
 }
 

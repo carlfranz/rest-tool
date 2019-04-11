@@ -20,8 +20,8 @@ sub gen_list {
     if ( $state_ref{'logger'} ) {
         $ret = qq|$ret  log.debug('Retrieving a list of ${class_name} from server');\n|;
     }
-    $ret = qq|$ret  return this.http.get<${class_name}\[\]>(\'${endpoint}\');\n|;
-    $ret = qq|$ret}\n\n|;
+    $ret = qq|$ret  return this.http.get<${class_name}\[\]>(\'${endpoint}\')\n|;
+    $ret = qq|$ret    .pipe(catchError(err => this.handleError(err)));\n}\n\n|;
     return $ret;
 }
 

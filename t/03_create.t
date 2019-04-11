@@ -22,7 +22,8 @@ my $result = gen_create(%test_conf);
 my $expected =
     qq|create(restCaProxy: RestCaProxy): Observable<RestCaProxy> {\n|
   . qq|  log.debug('Creating a new RestCaProxy');\n|
-  . qq|  return this.http.post<RestCaProxy>('/rest/v1/proxies',restCaProxy);\n|
+  . qq|  return this.http.post<RestCaProxy>('/rest/v1/proxies',restCaProxy)\n|
+  . qq|    .pipe(catchError(err => this.handleError(err)));\n|
   . qq|}\n\n|;
 
 ok( $result eq $expected );

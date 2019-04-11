@@ -22,7 +22,8 @@ my $result = gen_remove(%test_conf);
 my $expected =
     qq|remove(id: string): Observable<{}> {\n|
   . qq|  log.debug(`Deleting the RestCaProxy with id \${id}`);\n|
-  . qq|  return this.http.delete<{}>(`/rest/v1/proxies/\${id}`);\n|
+  . qq|  return this.http.delete<{}>(`/rest/v1/proxies/\${id}`)\n|
+  . qq|    .pipe(catchError(err => this.handleError(err)));\n|
   . qq|}\n\n|;
 
 ok( $result eq $expected );

@@ -22,7 +22,8 @@ my $result = gen_list(%test_conf);
 my $expected =
     qq|list(): Observable<RestCaProxy[]> {\n|
   . qq|  log.debug('Retrieving a list of RestCaProxy from server');\n|
-  . qq|  return this.http.get<RestCaProxy[]>('/rest/v1/proxies');\n|
+  . qq|  return this.http.get<RestCaProxy[]>('/rest/v1/proxies')\n|
+  . qq|    .pipe(catchError(err => this.handleError(err)));\n|
   . qq|}\n\n|;
 
 ok( $result eq $expected );

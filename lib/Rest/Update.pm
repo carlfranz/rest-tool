@@ -22,8 +22,8 @@ sub gen_update {
     if ( $state_ref{'logger'} ) {
         $ret = qq|$ret  log.debug(`Updating the $cname with id \${id}`);\n|;
     }
-    $ret = qq|$ret  return this.http.put<$cname>(`$endpoint/\${id}`,$d);\n|;
-    $ret = qq|$ret}\n\n|;
+    $ret = qq|$ret  return this.http.put<$cname>(`$endpoint/\${id}`,$d)\n|;
+    $ret = qq|$ret    .pipe(catchError(err => this.handleError(err)));\n}\n\n|;
     return $ret;
 }
 

@@ -30,8 +30,8 @@ my %state = (
 my $argv_ref  = \@ARGV;
 my $state_ref = \%state;
 
-my $mapped_ref = parse_arguments($argv_ref);
-read_conf( $state_ref, $mapped_ref );
+# my $mapped_ref = parse_arguments($argv_ref);
+# read_conf( $state_ref, $mapped_ref );
 
 my $res =                 #
   gen_list(%state)        #
@@ -40,5 +40,5 @@ my $res =                 #
   . gen_update(%state)    #
   . gen_remove(%state);
 
-#do print $res;
+do print $res;
 1;

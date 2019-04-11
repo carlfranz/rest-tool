@@ -18,11 +18,12 @@ sub gen_create {
     my $endpoint = $state_ref{'endpoint'};
     my $d        = lcfirst $cname;
 
-    my $ret = "create($d: $cname): Observable<$cname> {\n";
+    my $ret = qq|create($d: $cname): Observable<$cname> {\n|;
     if ( $state_ref{'logger'} ) {
-        $ret = "$ret  log.debug('Creating a new ${cname}');\n";
+        $ret = qq|$ret  log.debug('Creating a new ${cname}');\n|;
     }
-    $ret = "$ret  return this.http.post<${cname}>(\'${endpoint}\',$d);\n}\n\n";
+    $ret = qq|$ret  return this.http.post<${cname}>(\'${endpoint}\',$d)\n|;
+    $ret = qq|$ret    .pipe(catchError(err => this.handleError(err)));\n}\n\n|;
     return $ret;
 }
 
